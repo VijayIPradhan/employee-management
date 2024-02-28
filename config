@@ -1,0 +1,16 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+
+[remote "origin"]
+	url = https://VijayIPradhan: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@github.com/VijayIPradhan/employee-management.git
+
+[user]
+    name = VijayIPradhan
+    email = vijayjesuspradhan@gnail.com
+
+

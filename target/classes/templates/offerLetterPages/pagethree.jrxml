@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pagethree" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e0db84a4-2201-40d6-9eae-325074a10919">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+    <queryString language="SQL">
+        <![CDATA[select * from offer_letter]]>
+    </queryString>
+    <field name="offer_letter_id" class="java.lang.Long">
+        <property name="com.jaspersoft.studio.field.label" value="offer_letter_id"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="offer_letter"/>
+    </field>
+    <field name="package" class="java.lang.Double">
+        <property name="com.jaspersoft.studio.field.label" value="package"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="offer_letter"/>
+    </field>
+    <field name="department" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.label" value="department"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="offer_letter"/>
+    </field>
+    <field name="designation" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.label" value="designation"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="offer_letter"/>
+    </field>
+    <field name="email" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.label" value="email"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="offer_letter"/>
+    </field>
+    <field name="full_name" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.label" value="full_name"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="offer_letter"/>
+    </field>
+    <field name="issued_date" class="java.time.LocalDateTime">
+        <property name="com.jaspersoft.studio.field.label" value="issued_date"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="offer_letter"/>
+    </field>
+    <field name="joining_date" class="java.time.LocalDateTime">
+        <property name="com.jaspersoft.studio.field.label" value="joining_date"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="offer_letter"/>
+    </field>
+    <field name="phone_number" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.label" value="phone_number"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="offer_letter"/>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="73" splitType="Stretch">
+            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <frame>
+                <reportElement x="0" y="0" width="555" height="73" uuid="786839bb-43c5-47bd-b955-fa5d55552288"/>
+                <image>
+                    <reportElement x="10" y="-7" width="80" height="68" uuid="73fc5f9e-5bde-4426-83c7-5f6c6a87dc85"/>
+                    <imageExpression><![CDATA["/Users/kasaram/IdeaProjects/employee-management-master/src/main/resources/images/seabed2crest.jpg"]]></imageExpression>
+                </image>
+                <staticText>
+                    <reportElement x="110" y="3" width="389" height="42" uuid="bc4e1ccd-f78e-44a5-b36c-6502d4b557b1"/>
+                    <textElement textAlignment="Left" verticalAlignment="Middle">
+                        <font fontName="Arial" size="20"/>
+                    </textElement>
+                    <text><![CDATA[Seabed2Crest Technologies Pvt Ltd]]></text>
+                </staticText>
+                <line>
+                    <reportElement x="2" y="64" width="545" height="1" forecolor="#4271C2" uuid="72954fb7-1452-486a-a54a-44a803d6de31"/>
+                </line>
+                <line>
+                    <reportElement x="2" y="66" width="545" height="1" forecolor="#EBC107" uuid="26c4f4c5-3328-4820-a55c-847a05f2e930"/>
+                </line>
+            </frame>
+        </band>
+    </title>
+    <detail>
+        <band height="670" splitType="Stretch">
+            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <image scaleImage="RealHeight" isUsingCache="true">
+                <reportElement x="89" y="159" width="375" height="320" isPrintWhenDetailOverflows="true" uuid="2d616bcd-08d1-48e0-ba0e-b7583e1a7bd0"/>
+                <imageExpression><![CDATA["images/seabed_transparent.jpeg"]]></imageExpression>
+            </image>
+            <staticText>
+                <reportElement x="15" y="45" width="528" height="71" forecolor="#635E5D" uuid="9d8f35b7-cf5c-46a3-b6a5-9cedc1e534dd"/>
+                <textElement textAlignment="Justified">
+                    <font fontName="Times New Roman" size="12" isBold="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Seabed2Crest Technologies Pvt Ltd has a code of conduct, confidentiality and noncompete / nondisclosure agreements, primarily to address working standards and business interests of the company and its clients. You are expected to sign your acceptance and adhere to these norms once you join the company.]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="18" width="158" height="20" uuid="a3d23f58-51c0-426a-bad3-db87eb208955">
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Left">
+                    <font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[CODE OF CONDUCT]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="143" width="528" height="79" forecolor="#635E5D" uuid="01d32b21-5792-47ce-99ec-868c12e35621"/>
+                <textElement textAlignment="Justified">
+                    <font fontName="Times New Roman" size="12" isBold="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[You will not give anyone by word of mouth, writing, facsimile, electronic devices and media or otherwise any particulars or details, which you acquire during the course of your employment of our working systems, technical know-how, security arrangements, administrative and or organization matters of our and our clients whether confidential, secret or otherwise, either during your employment with company or afterwards.]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="115" width="257" height="20" uuid="4d1cc075-c63f-414c-b39b-47fa798ac4a1">
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Left">
+                    <font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[SECRECY AND CONFIDENTIALITY]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="255" width="528" height="110" forecolor="#635E5D" uuid="4554158b-72f7-4240-98a8-45554fa44f3a"/>
+                <textElement textAlignment="Justified">
+                    <font fontName="Times New Roman" size="12" isBold="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[After confirmation, your employment may be terminated by either party giving 30 days' written notice. The company may also terminate your services immediately by paying 30 days' salary and allowances, if any, in lieu of notice, without providing a reason. The company reserves the right to terminate your employment without notice or payment in lieu of notice if you breach the terms of employment in a manner that adversely affects the company's reputation, involves any cost implication, or constitutes gross negligence, misrepresentation, persistent misconduct, or a criminal offense.]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="228" width="150" height="20" uuid="345764d7-6935-4631-9961-d08d89c4cf0b">
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Left">
+                    <font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[TERMINATION]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="403" width="528" height="65" forecolor="#635E5D" uuid="833fe6d1-5180-429d-9b68-9a058cb3eb33"/>
+                <textElement textAlignment="Justified">
+                    <font fontName="Times New Roman" size="12" isBold="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[If you abscond from duties or remain absent without leave or permission for (5) consecutive working days it will be deemed that you have voluntarily resigned from the services of the company. In such a case you acknowledge that the company may remove your name from the master roll of the company without assigning any reason what so ever]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="374" width="307" height="20" uuid="7c315214-3916-43c5-b6a8-3b35a7d2eaa7">
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Left">
+                    <font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[VOLUNTARY ABANDONMENT OF SERVICE]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="509" width="528" height="121" forecolor="#635E5D" uuid="e6f69153-92bb-4671-b23c-0c5015691adc"/>
+                <textElement textAlignment="Justified">
+                    <font fontName="Times New Roman" size="12" isBold="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[You are requested to submit the following documents to us immediately on receipt of the offer:
+1. Two Photocopies of your Educational Certificates (10th     Passing Certificate, 12th Passing Certificate, Graduation Passing Certificate, Post-Graduation Passing Certificate)
+2. Two Photocopies of your Relieving Letter from present Employer (on the day of
+joining)
+3. Two Photocopies of the Last 3 months Salary Slip of present Employer
+4. Two Photocopies of all Experience Letter from previous companies
+5. Passport size photographs - 4]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="481" width="287" height="20" uuid="9ff5a9bb-9147-4dfa-a00a-bcd3380db9f9">
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Left">
+                    <font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[SUBMISSION OF DOCUMENTS]]></text>
+            </staticText>
+        </band>
+    </detail>
+    <pageFooter>
+        <band height="54" splitType="Stretch">
+            <frame>
+                <reportElement x="3" y="2" width="550" height="50" uuid="f28a7cf5-51c2-4c0b-9450-c40058b8f1e6"/>
+                <staticText>
+                    <reportElement x="0" y="9" width="550" height="20" forecolor="#4271C2" uuid="386cb605-a6a9-4fbe-b387-ab22e88173b1"/>
+                    <textElement textAlignment="Center">
+                        <font size="11"/>
+                    </textElement>
+                    <text><![CDATA[# 584, Near Suryodaya School, Hesaraghatta Hobli, Rajanukunte, Yelahanka Taluk, Bangalore North - 560064.]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="28" y="26" width="40" height="20" forecolor="#EBC107" uuid="a8785343-0302-4080-b126-e1fc4480892e"/>
+                    <textElement verticalAlignment="Middle">
+                        <font size="11"/>
+                    </textElement>
+                    <text><![CDATA[Phone :]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="70" y="27" width="90" height="20" forecolor="#4271C2" uuid="63be94c1-52d8-42be-948e-4bd9548a66f7"/>
+                    <textElement verticalAlignment="Middle">
+                        <font size="11"/>
+                    </textElement>
+                    <text><![CDATA[+91 7349368311]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="407" y="27" width="124" height="20" forecolor="#4271C2" uuid="742d2989-6fda-47a0-a271-fdea5a6612ca"/>
+                    <textElement verticalAlignment="Middle">
+                        <font size="11"/>
+                    </textElement>
+                    <text><![CDATA[www.seabed2crest.com]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="358" y="27" width="52" height="20" forecolor="#EBC107" uuid="f63a7fde-8bed-4411-829e-c668e4fa0774"/>
+                    <textElement verticalAlignment="Middle">
+                        <font size="11"/>
+                    </textElement>
+                    <text><![CDATA[Website :]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="218" y="26" width="122" height="20" forecolor="#500E87" uuid="bdd48604-474c-4449-af1d-90296bda5e80"/>
+                    <textElement verticalAlignment="Middle">
+                        <font size="11" isUnderline="true"/>
+                    </textElement>
+                    <text><![CDATA[info@seabed2crest.com]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="180" y="27" width="40" height="20" forecolor="#EBC107" uuid="66abd45d-ab3f-4c3d-8ee4-aa105d643f73"/>
+                    <textElement verticalAlignment="Middle">
+                        <font size="11"/>
+                    </textElement>
+                    <text><![CDATA[Email :]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="346" y="30" width="4" height="14" forecolor="#4271C2" uuid="7245e5d7-f021-4005-96cd-927f126b8091"/>
+                    <textElement verticalAlignment="Middle">
+                        <font size="11"/>
+                    </textElement>
+                    <text><![CDATA[|]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="168" y="29" width="4" height="14" forecolor="#4271C2" uuid="ee19246a-db7c-43f3-8803-ac5ee234a759"/>
+                    <textElement verticalAlignment="Middle">
+                        <font size="11"/>
+                    </textElement>
+                    <text><![CDATA[|]]></text>
+                </staticText>
+                <line>
+                    <reportElement x="2" y="3" width="545" height="1" forecolor="#EBC107" uuid="7d69eac5-51ad-418e-bcb0-36099073abc2"/>
+                </line>
+                <line>
+                    <reportElement x="2" y="1" width="545" height="1" forecolor="#4271C2" uuid="db2b7f46-888b-47dc-b736-13900f155bf8"/>
+                </line>
+            </frame>
+        </band>
+    </pageFooter>
+</jasperReport>

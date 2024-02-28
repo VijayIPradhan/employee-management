@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pay-slip" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dd9f8f9d-ac3d-4d1b-afd4-62d75762af23">
+    <parameter name="employee" class="com.employee.management.DTO.EmployeeDTO"/>
+    <parameter name="payroll" class="com.employee.management.DTO.PayrollDTO"/>
+    <parameter name="amount" class="java.lang.String"/>
+    <field name="employeeName" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.label" value="employee_name"/>
+        <fieldDescription><![CDATA[$P{employee}.getEmployeeName()]]></fieldDescription>
+    </field>
+    <field name="designation" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.label" value="designation"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
+    </field>
+    <field name="location" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.label" value="location"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
+    </field>
+    <field name="bank_name" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.label" value="bank_name"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
+    </field>
+    <field name="date_of_join" class="java.time.LocalDateTime">
+        <property name="com.jaspersoft.studio.field.label" value="date_of_join"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
+    </field>
+    <field name="id" class="java.lang.Long">
+        <property name="com.jaspersoft.studio.field.label" value="id"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="payroll"/>
+    </field>
+    <field name="basic" class="java.lang.Double">
+        <property name="com.jaspersoft.studio.field.label" value="basic"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="payroll"/>
+    </field>
+    <field name="gross_earnings" class="java.lang.Double">
+        <property name="com.jaspersoft.studio.field.label" value="gross_earnings"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="payroll"/>
+    </field>
+    <field name="house_rent_allowance" class="java.lang.Double">
+        <property name="com.jaspersoft.studio.field.label" value="house_rent_allowance"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="payroll"/>
+    </field>
+    <field name="medical_allowance" class="java.lang.Double">
+        <property name="com.jaspersoft.studio.field.label" value="medical_allowance"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="payroll"/>
+    </field>
+    <field name="other_allowance" class="java.lang.Double">
+        <property name="com.jaspersoft.studio.field.label" value="other_allowance"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="payroll"/>
+    </field>
+    <field name="pay_date" class="java.time.LocalDateTime">
+        <property name="com.jaspersoft.studio.field.label" value="pay_date"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="payroll"/>
+    </field>
+    <field name="pay_period" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.label" value="pay_period"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="payroll"/>
+    </field>
+    <field name="provident_fund" class="java.lang.Double">
+        <property name="com.jaspersoft.studio.field.label" value="provident_fund"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="payroll"/>
+    </field>
+    <field name="employeeid" class="java.lang.Long">
+        <property name="com.jaspersoft.studio.field.label" value="employeeid"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="payroll"/>
+    </field>
+    <field name="total_deductions" class="java.lang.Double">
+        <property name="com.jaspersoft.studio.field.label" value="total_deductions"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="payroll"/>
+    </field>
+    <field name="total_net_payable" class="java.lang.Double">
+        <property name="com.jaspersoft.studio.field.label" value="total_net_payable"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="payroll"/>
+    </field>
+    <group name="employeeid">
+        <groupExpression><![CDATA[$F{employeeid}]]></groupExpression>
+    </group>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="61" splitType="Stretch">
+            <image>
+                <reportElement x="-9" y="-6" width="70" height="61" backcolor="#000000" uuid="568e2568-ed94-4908-94d0-8fe09a186089"/>
+                <imageExpression><![CDATA["src/main/resources/images/seabed2crest.jpg"]]></imageExpression>
+            </image>
+            <staticText>
+                <reportElement x="71" y="4" width="360" height="30" uuid="49a6538e-28c6-47a2-8c44-71fd3848d6d6"/>
+                <textElement>
+                    <font  size="20" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Seabed2Crest Technologies Pvt Ltd]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="81" y="31" width="298" height="24" uuid="2743c57f-a6f5-4e86-8cfa-78a87f7c3ebc"/>
+                <textElement textAlignment="Center">
+                    <font />
+                </textElement>
+                <text><![CDATA[1st floor, R D, Rajanna Complex, Yelahanka Taluk, Rajanukunte,
+Bengalulu, Karnataka 560064.]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="441" y="17" width="114" height="14" forecolor="#918C8C" uuid="9fcc7113-4da2-44ff-8952-7d38be2e0cfb"/>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Payslip for the Month]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="466" y="31" width="74" height="15" uuid="8dd4ea51-2e99-46ef-bfd5-4e264a5d896e"/>
+                <textElement markup="html">
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{payroll}.getPayPeriod()]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="140" splitType="Stretch">
+            <staticText>
+                <reportElement x="11" y="14" width="120" height="20" forecolor="#5C5858
+" uuid="68774939-530d-48dd-8be7-504ee3b14b9b"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[EMPLOYEE SUMMARY]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="14" y="34" width="150" height="20" forecolor="#7D7979" uuid="a8dc0e19-9fbb-4577-be54-71a4c8a7bb4a"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Employee Name                      :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="14" y="54" width="150" height="20" forecolor="#7D7979" uuid="19d34f1b-87e4-45ae-9a1a-748fb47c84f8"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Employee ID                            :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="14" y="74" width="150" height="20" forecolor="#7D7979" uuid="530f9545-ffe2-462f-aa1c-72a992017b9e"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Pay Period                               :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="14" y="94" width="150" height="20" forecolor="#7D7979" uuid="cbf26bab-0f59-49af-af2c-e1d2982da366"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Pay Date                                  :]]></text>
+            </staticText>
+            <line>
+                <reportElement x="1" y="4" width="553" height="1" forecolor="#A0AFBA" uuid="e34e2a38-6cbf-4c4b-b040-8e14ca82ec45">
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+            </line>
+            <textField>
+                <reportElement x="157" y="34" width="100" height="14" uuid="8df94aff-0b3d-495c-90eb-edf078bcaf88"/>
+                <textFieldExpression><![CDATA[$P{employee}.getEmployeeName()]]></textFieldExpression>
+
+            </textField>
+            <textField>
+                <reportElement x="157" y="55" width="100" height="14" uuid="482cef07-70d9-4019-a2a1-477ccbe6b720"/>
+                <textFieldExpression><![CDATA[$P{payroll}.getEmployeeId()]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="157" y="74" width="100" height="14" uuid="a4f1aa07-5f82-48d5-8f9b-d308795fe8cb"/>
+                <textFieldExpression><![CDATA[$P{payroll}.getPayPeriod()]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="157" y="94" width="100" height="14" uuid="525a33cb-831b-4503-a126-25510847acce"/>
+                <textFieldExpression><![CDATA[$P{payroll}.getPayDate()]]></textFieldExpression>
+            </textField>
+            <rectangle radius="15">
+                <reportElement x="361" y="13" width="194" height="110" forecolor="rgba(159, 193, 204, 0.5686275)" backcolor="rgba(230, 243, 247, 0.22745098)" uuid="7b6afcc4-6af9-40d4-9d55-6d002293d0e0"/>
+            </rectangle>
+            <line>
+                <reportElement x="371" y="68" width="174" height="1" uuid="cd303c75-2a5b-41ff-98d1-2841309e9874"/>
+                <graphicElement>
+                    <pen lineStyle="Dotted" lineColor="#9FC1CC"/>
+                </graphicElement>
+            </line>
+            <staticText>
+                <reportElement x="403" y="48" width="100" height="15" forecolor="#2F6144" uuid="655bdc8f-2da4-4392-8116-e0a6b5d31732"/>
+                <textElement textAlignment="Left">
+                    <font  size="9"/>
+                </textElement>
+                <text><![CDATA[Employee Net Pay]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="414" y="24" width="113" height="24" uuid="9548fa82-450f-45f5-8c6d-12307a4e1ef1"/>
+                <textElement>
+                    <font  size="16" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{payroll}.getTotalNetPayable()]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="391" y="77" width="90" height="14" forecolor="#878484" uuid="45973de4-b711-4777-9417-afbea423f899"/>
+                <text><![CDATA[Paid Days	:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="391" y="97" width="90" height="14" forecolor="#878484" uuid="7097870a-aaa7-4ea0-b0cd-2bca07239d54"/>
+                <text><![CDATA[LOP Days	:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="483" y="76" width="40" height="16" uuid="099d119d-0d6a-440f-9fb3-2137c2cbfa37"/>
+                <textFieldExpression><![CDATA[$P{payroll}.getTotalDaysPaid()]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="483" y="96" width="40" height="16" uuid="419f690f-3c70-4cd8-abd3-29d2aa5d09dd"/>
+                <textFieldExpression><![CDATA[$P{payroll}.getTotalLopDays()]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="393" y="22" width="8" height="24" uuid="6b3b683a-06e2-4259-813e-a22fc3b80b6c"/>
+                <textElement>
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[₹]]></text>
+            </staticText>
+            <image>
+                <reportElement x="399" y="27" width="17" height="16" uuid="8356b835-bdbc-4e17-ac4c-85b73fba9cbb">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <imageExpression><![CDATA["src/main/resources/images/icons8-rupee-96.png"]]></imageExpression>
+            </image>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="73" splitType="Stretch">
+            <line>
+                <reportElement x="1" y="-2" width="553" height="1" forecolor="#A0AFBA" uuid="ff0ee42b-4922-401e-b0da-922fa92128d8">
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <graphicElement>
+                    <pen lineStyle="Dotted"/>
+                </graphicElement>
+            </line>
+            <staticText>
+                <reportElement x="15" y="36" width="142" height="20" forecolor="#7D7979" uuid="c3c015fc-7272-41d1-ba57-a09f4a14122a"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Location                                  :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="10" width="142" height="20" forecolor="#7D7979" uuid="d1b298e3-b381-438b-a790-b4023adeac23"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Designation                             :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="311" y="36" width="110" height="20" forecolor="#7D7979" uuid="850f8976-7974-42c8-acc9-4a67f62149b0"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Date of Join                 :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="311" y="10" width="110" height="20" forecolor="#7D7979" uuid="2e39038d-5bf3-4742-873f-d303479ca064"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Bank Name                 :]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="157" y="36" width="100" height="14" uuid="1677fab6-56a7-48fe-9419-3d32785f15a0"/>
+                <textFieldExpression><![CDATA[$P{employee}.getLocation()]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="421" y="36" width="100" height="14" uuid="540ab8ca-45cf-4112-a55d-96f77b4234fd"/>
+                <textFieldExpression><![CDATA[$P{employee}.getDateOfJoin()]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="421" y="10" width="100" height="14" uuid="07341db1-1f0d-4ed7-9657-86a6dc6d595c"/>
+                <textFieldExpression><![CDATA[$P{employee}.getBankName()]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="157" y="12" width="100" height="14" uuid="fbb76002-f7f7-4a42-b95b-5568e2ca68eb"/>
+                <textFieldExpression><![CDATA[$P{employee}.getDesignation()]]></textFieldExpression>
+            </textField>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="454" splitType="Stretch">
+            <frame>
+                <reportElement x="1" y="13" width="552" height="200" uuid="aa063087-adcf-4f92-b423-a9147ef22ed1"/>
+                <box>
+                    <pen lineWidth="4.0" lineColor="rgba(175, 204, 222, 0.6431373)"/>
+                </box>
+                <line>
+                    <reportElement x="291" y="36" width="259" height="1" forecolor="#A0AFBA" uuid="2a85f9dc-63d5-4f32-8e9d-747989453247">
+                        <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                        <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    </reportElement>
+                    <graphicElement>
+                        <pen lineStyle="Dotted"/>
+                    </graphicElement>
+                </line>
+                <line>
+                    <reportElement x="14" y="36" width="255" height="1" forecolor="#A0AFBA" uuid="476e57ac-20ee-4468-9caa-e4be3b50b7db">
+                        <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                        <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    </reportElement>
+                    <graphicElement>
+                        <pen lineStyle="Dotted"/>
+                    </graphicElement>
+                </line>
+                <staticText>
+                    <reportElement x="16" y="15" width="120" height="20" forecolor="#5C5858" uuid="4fe6c02a-c143-4fb4-aec4-bac8c327be52"/>
+                    <textElement>
+                        <font isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[EARNINGS]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="497" y="15" width="49" height="20" forecolor="#5C5858" uuid="7cfc45b7-c461-44e3-a066-7824cd70624f"/>
+                    <textElement textAlignment="Right">
+                        <font isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[AMOUNT]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="219" y="15" width="52" height="20" forecolor="#5C5858" uuid="43b3b373-81eb-47c4-858e-69c7a80f7c06"/>
+                    <textElement>
+                        <font isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[AMOUNT]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="293" y="15" width="120" height="20" forecolor="#5C5858" uuid="551d6072-c236-4f72-9993-ded759352a50"/>
+                    <textElement>
+                        <font isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[DEDUCTIONS]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="17" y="50" width="150" height="20" forecolor="#524E4E" uuid="423ec196-0122-4b0b-9fc9-225ac36c3710"/>
+                    <textElement>
+                        <font isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Basic]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="293" y="169" width="150" height="20" forecolor="#524E4E" uuid="b1e6c622-0ecb-4c78-9090-e6650e332907">
+                        <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    </reportElement>
+                    <textElement>
+                        <font isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Total Deductions]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="293" y="50" width="150" height="20" forecolor="#524E4E" uuid="10f59d76-54f0-45bd-9e2a-2e7795e941ed"/>
+                    <textElement>
+                        <font isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Provident Fund]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="17" y="169" width="150" height="20" forecolor="#524E4E" uuid="d533392a-3e78-49e2-b142-cc1d5ab0e8b7"/>
+                    <textElement>
+                        <font isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Gross Earnings]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="17" y="136" width="150" height="20" forecolor="#524E4E" uuid="6134db09-380c-47f1-bd69-9544ff587855"/>
+                    <textElement>
+                        <font isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Other Allowance]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="17" y="106" width="150" height="20" forecolor="#524E4E" uuid="f42be4c6-8100-4934-bdc7-82a04c868dcf"/>
+                    <textElement>
+                        <font isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Medical Allowance]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="17" y="78" width="150" height="20" forecolor="#524E4E" uuid="fa6d1373-5fde-4f6e-8c45-5faefe39c299"/>
+                    <textElement>
+                        <font isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[House Rent Allowance]]></text>
+                </staticText>
+                <textField>
+                    <reportElement x="477" y="168" width="70" height="20" uuid="0d280894-ebab-4efe-841e-93cb11ebdff4"/>
+                    <textElement textAlignment="Right" verticalAlignment="Top">
+                        <font isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{payroll}.getTotalDeductions()]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="476" y="49" width="70" height="20" uuid="4a57f4eb-0da4-4467-bb18-44870efe3246"/>
+                    <textElement textAlignment="Right" verticalAlignment="Top">
+                        <font isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{payroll}.getProvidentFund()]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="201" y="169" width="70" height="20" uuid="cdc8b377-62bb-4261-a1b5-8a5aedd3a6ff"/>
+                    <textElement textAlignment="Right" verticalAlignment="Top">
+                        <font isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{payroll}.getGrossEarnings()]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="201" y="135" width="70" height="20" uuid="137ef08d-c738-491a-a755-5dbed6bc61b2"/>
+                    <textElement textAlignment="Right" verticalAlignment="Top">
+                        <font isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{payroll}.getOtherAllowance()]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="201" y="105" width="70" height="20" uuid="f861d865-2cca-42f7-ba1f-836c1d28269f"/>
+                    <textElement textAlignment="Right" verticalAlignment="Top">
+                        <font isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{payroll}.getMedicalAllowance()]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="201" y="77" width="70" height="20" uuid="2581dd49-e35b-4647-9a29-50c9ada799f4"/>
+                    <textElement textAlignment="Right" verticalAlignment="Top">
+                        <font isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{payroll}.getHouseRentAllowance()]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="201" y="51" width="70" height="20" uuid="4b0c760b-568c-4d2a-85dd-4346ff62e905"/>
+                    <textElement textAlignment="Right" verticalAlignment="Top">
+                        <font isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{payroll}.getBasic()]]></textFieldExpression>
+                </textField>
+
+                <staticText>
+                    <reportElement x="293" y="78" width="150" height="20" forecolor="#524E4E" uuid="2e3430ea-e200-4fb8-86b0-508db20c759e"/>
+                    <textElement>
+                        <font isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Professional Tax]]></text>
+                </staticText>
+                <textField>
+                    <reportElement x="476" y="77" width="70" height="20" uuid="a18eaee7-53e8-43f1-b61a-fce99343d010"/>
+                    <textElement textAlignment="Right" verticalAlignment="Top">
+                        <font isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{payroll}.getProfessionalTax()]]></textFieldExpression>
+                </textField>
+                <staticText>
+                    <reportElement x="293" y="106" width="150" height="20" forecolor="#524E4E" uuid="ff19a53c-f8c4-46c4-9307-d52c837bb174">
+                        <printWhenExpression><![CDATA[$P{payroll}.getLeaveDeduction() != "0"]]></printWhenExpression>
+                    </reportElement>
+                    <textElement>
+                        <font isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Leave Deductions]]></text>
+
+                </staticText>
+                <textField>
+                    <reportElement x="476" y="105" width="70" height="20" uuid="30b0db11-8a37-491e-a9c8-eafe5b39bcd9">
+                        <printWhenExpression><![CDATA[$P{payroll}.getLeaveDeduction() != "0"]]></printWhenExpression>
+                    </reportElement>
+                    <textElement textAlignment="Right" verticalAlignment="Top">
+                        <font isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{payroll}.getLeaveDeduction()]]></textFieldExpression>
+                </textField>
+            </frame>
+            <rectangle radius="15">
+                <reportElement x="1" y="282" width="556" height="49" uuid="f4cae053-3191-4859-b075-bad93c115911"/>
+                <graphicElement>
+                    <pen lineColor="#D4F1FC"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle radius="15">
+                <reportElement x="414" y="282" width="143" height="49" forecolor="#D4F1FC" backcolor="rgba(212, 241, 252, 0.5529412)" uuid="8096460a-adf8-4e75-b7f9-b710153c1f48"/>
+                <graphicElement>
+                    <pen lineWidth="0.0" lineStyle="Dotted" lineColor="#D4F1FC"/>
+                </graphicElement>
+            </rectangle>
+            <staticText>
+                <reportElement x="15" y="290" width="134" height="20" uuid="09ffaf8c-9ffa-457f-8fe2-4bc577292b75"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[TOTAL NET PAYABLE]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="309" width="174" height="20" forecolor="#524E4E" uuid="a8e8bc7b-806a-4e26-b45e-a9c78d284d3f"/>
+                <textElement>
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Gross Earnings - Total Deductions]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="457" y="294" width="96" height="24" uuid="8b3c6628-ec76-4d12-b1ab-8fd69115e0f8"/>
+                <textElement textAlignment="Left">
+                    <font size="17" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{payroll}.getTotalNetPayable()]]></textFieldExpression>
+            </textField>
+            <line>
+                <reportElement x="1" y="399" width="553" height="1" forecolor="#A0AFBA" uuid="423ba502-3d5b-4233-a085-2adecf1ec2e2">
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <graphicElement>
+                    <pen lineStyle="Solid"/>
+                </graphicElement>
+            </line>
+            <textField>
+                <reportElement x="202" y="372" width="348" height="20" uuid="7ba44d14-53e2-4766-ab25-cd1f06d53a24"/>
+                <textElement textAlignment="Left" verticalAlignment="Top">
+                    <font  size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{amount}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="100" y="369" width="98" height="20" forecolor="#524E4E" uuid="e14d0478-5ad0-454d-97b2-74c602c8f595"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="11" isBold="false"/>
+                </textElement>
+                <text><![CDATA[Amount in Words:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="81" y="405" width="396" height="20" forecolor="#524E4E" uuid="68c3782e-3589-4c62-bb47-1a77ead21288"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="11" isBold="false"/>
+                </textElement>
+                <text><![CDATA[-- This is a system generated payslip, hence the signature is not required. --
+]]></text>
+            </staticText>
+            <image>
+                <reportElement x="441" y="298" width="17" height="16" uuid="d6a9e8d3-42f7-4703-bcec-81819880ce77">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <imageExpression><![CDATA["images/icons8-rupee-96.png"]]></imageExpression>
+            </image>
+        </band>
+    </detail>
+</jasperReport>

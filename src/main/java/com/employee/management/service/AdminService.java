@@ -19,4 +19,6 @@ public interface AdminService {
 
     List<AvgSalaryGraphResponse> getSalaryGraphDataForPastSixMonths();
     String updatePfDetails(PfNumberUpdateRequest request);
+
+    HikeEntityDTO updateHikeDetails(HikeUpdateRequest request);
 }

@@ -91,4 +91,8 @@ public class AdminController {
         System.out.println(request);
         return new ResponseEntity<>(adminService.updatePfDetails(request),HttpStatus.OK);
     }
+    @PostMapping("/update-hike")
+    public ResponseEntity<HikeEntityDTO>updateHike(@RequestBody HikeUpdateRequest request){
+        return new ResponseEntity<>(adminService.updateHikeDetails(request),HttpStatus.OK);
+    }
 }

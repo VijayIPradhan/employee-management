@@ -17,9 +17,9 @@ public enum ResCodes {
     PREVIOUS_PAYROLL_DETAILS_NOT_FOUND("1009","Previous month payroll details not found"),
     DUPLICATE_PAYROLL_DETAILS("1010","Payroll for the given month is already existing for the employee"),
     INVALID_OTP("1011","Invalid Otp"),
-    EMPTY_FIELDS("1012","Fields can not be empty")
+    EMPTY_FIELDS("1012","Fields can not be empty"),
+    HIKE_APPROVED_ALREADY("1013","Hike already approved for the employee")
     ;
-
     private final String errorCode;
     private final String errorMsg;
 

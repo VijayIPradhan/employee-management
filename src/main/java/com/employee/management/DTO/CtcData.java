@@ -4,29 +4,29 @@ import lombok.Data;
 
 @Data
 public class CtcData{
-    private Double yearlyGrossCtc;
-    private Double yearlyHRA;
-    private Double yearlyMedAllowance;
-    private Double yearlyOtherAllowance;
-    private Double yearlyBasic;
+    private String yearlyGrossCtc;
+    private String yearlyHRA;
+    private String yearlyMedAllowance;
+    private String yearlyOtherAllowance;
+    private String yearlyBasic;
 
-    private Double monthlyGrossCtc;
-    private Double monthlyHRA;
-    private Double monthlyMedAllowance;
-    private Double monthlyOtherAllowance;
-    private Double monthlyBasic;
+    private String monthlyGrossCtc;
+    private String monthlyHRA;
+    private String monthlyMedAllowance;
+    private String monthlyOtherAllowance;
+    private String monthlyBasic;
 
-    private Double monthlyIncomeTax;
-    private Double monthlyProfessionalTax;
-    private Double monthlyProvidentFund;
-    private Double monthlyLeaveDeduction;
-    private Double monthlyTotalDeduction;
-    private Double monthlyNetPayable;
+    private String monthlyIncomeTax;
+    private String monthlyProfessionalTax;
+    private String monthlyProvidentFund;
+    private String monthlyLeaveDeduction;
+    private String monthlyTotalDeduction;
+    private String monthlyNetPayable;
 
-    private Double yearlyIncomeTax;
-    private Double yearlyProfessionalTax;
-    private Double yearlyProvidentFund;
-    private Double yearlyLeaveDeduction;
-    private Double yearlyTotalDeduction;
-    private Double yearlyNetPayable;
+    private String yearlyIncomeTax;
+    private String yearlyProfessionalTax;
+    private String yearlyProvidentFund;
+    private String yearlyLeaveDeduction;
+    private String yearlyTotalDeduction;
+    private String yearlyNetPayable;
 }

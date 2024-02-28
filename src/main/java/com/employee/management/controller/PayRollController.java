@@ -56,7 +56,7 @@ public class PayRollController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
-    @GetMapping("/preview")
+    @GetMapping("/preview-salary")
 //    @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<byte[]> previewPaySlip(@RequestParam("employeeId") String empId,
                                                      @RequestParam("payPeriod") String payPeriod) {

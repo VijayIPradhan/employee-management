@@ -1,12 +1,16 @@
 package com.employee.management.converters;
 
+
 import org.springframework.stereotype.Component;
+
+import java.text.DecimalFormat;
 
 @Component
 public class IndianNumberSystem {
 
     public String formatNumber(Double number) {
-        String numb = String.valueOf(number);
+        Double round= (double) Math.round(number);
+        String numb = String.valueOf(round);
         String numberStr;
         String split = null;
         if (numb.contains(".")) {
@@ -14,10 +18,20 @@ public class IndianNumberSystem {
             numberStr = num[0];
             split = num[1];
         } else numberStr = numb;
-        StringBuilder result = getStringBuilder(numberStr);
-        if(split!=null)
-            result.append(".").append(split).append("0");
-        return result.toString();
+        StringBuilder result= new StringBuilder(numberStr);
+        if(split!=null) {
+            result.append(".").append(split);
+        }
+        result= formatNumber(result);
+        StringBuilder resultW = getStringBuilder(String.valueOf(result));
+        return resultW.toString();
+    }
+    private StringBuilder formatNumber(StringBuilder result) {
+        String resultStr = result.toString().replaceAll(",", "");
+        DecimalFormat df = new DecimalFormat("##0.00");
+        String formattedResultStr = df.format(Double.parseDouble(resultStr));
+
+        return new StringBuilder(formattedResultStr);
     }
 
     private StringBuilder getStringBuilder(String numberStr) {
@@ -28,16 +42,17 @@ public class IndianNumberSystem {
         for (int i = len - 1; i >= 0; i--) {
             result.insert(0, numberStr.charAt(i));
             count++;
-            if (count == 3 && i != 0) {
+            if (count == 6 && i != 0) {
                 result.insert(0, ",");
             }
-            if (count == 5 && i != 0) {
+            if (count == 8 && i != 0) {
                 result.insert(0, ",");
             }
-            if (count == 7 && i != 0) {
+            if (count == 10 && i != 0) {
                 result.insert(0, ",");
             }
         }
         return result;
     }
+
 }

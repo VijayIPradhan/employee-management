@@ -56,6 +56,12 @@ public class Employee {
     private String uanNumber;
     @Column(name = "pfNumber")
     private String pfNumber;
+    @Column(name="Gross-salary")
+    private Double grossSalary;
+
+    @Column(name="next-hike-date")
+    private Date nextHikeDate;
+
 
     @Override
     public String toString() {
@@ -72,6 +78,8 @@ public class Employee {
                 ", email='" + email + '\'' +
                 ", uanNumber='" + uanNumber + '\'' +
                 ", pfNumber='" + pfNumber + '\'' +
+                ", grossSalary=" + grossSalary +
+                ", nextHikeDate=" + nextHikeDate +
                 '}';
     }
 }

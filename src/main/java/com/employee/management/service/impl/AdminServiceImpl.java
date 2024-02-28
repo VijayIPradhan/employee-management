@@ -1,23 +1,27 @@
 package com.employee.management.service.impl;
 
 import com.employee.management.DTO.*;
+import com.employee.management.converters.DateTimeConverter;
 import com.employee.management.converters.Mapper;
 import com.employee.management.exception.CompanyException;
 import com.employee.management.exception.ResCodes;
-import com.employee.management.models.Employee;
-import com.employee.management.models.Payroll;
-import com.employee.management.models.Role;
-import com.employee.management.models.Status;
-import com.employee.management.repository.EmployeeRepository;
-import com.employee.management.repository.PayrollRepository;
-import com.employee.management.repository.RoleRepository;
-import com.employee.management.repository.StatusRepository;
+import com.employee.management.models.*;
+import com.employee.management.repository.*;
 import com.employee.management.service.AdminService;
 import com.employee.management.service.EmailSenderService;
+import com.employee.management.util.CtcCalculator;
+import jakarta.mail.MessagingException;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -42,6 +46,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    DateTimeConverter dateTimeConverter;
+    @Autowired
+    HikeRepository hikeRepository;
 
 
     private String getTodayDateFormatted(){
@@ -182,5 +190,67 @@ public class AdminServiceImpl implements AdminService {
         }
         throw new CompanyException(ResCodes.EMPTY_FIELDS);
     }
+
+    @Override
+    public HikeEntityDTO updateHikeDetails(HikeUpdateRequest request){
+        Employee employee=employeeRepository.findById(request.getEmployeeId())
+                .orElseThrow(()->new CompanyException(ResCodes.EMPLOYEE_NOT_FOUND));
+        Employee approvedBy=employeeRepository.findById(request.getApprovedBy())
+                .orElseThrow(()->new CompanyException(ResCodes.EMPLOYEE_NOT_FOUND));
+        HikeEntity hike=hikeRepository.findByEmployee(employee).get();
+        if(!hike.getStatus()) {
+            hike.setStatus(true);
+            hike.setHikePercentage(Double.valueOf(request.getPercentage()));
+            hike.setApprovedBy(approvedBy);
+            hike.setNewSalary((hike.getPrevSalary() * (hike.getHikePercentage() / 100)) + hike.getPrevSalary());
+            hike.setApprovedDate(new Date());
+            hike.setEffectiveDate(dateTimeConverter.stringToLocalDateTimeConverter(request.getEffectiveDate()));
+            hike.setReason(request.getReason());
+            HikeEntity savedHike = hikeRepository.save(hike);
+            try{
+                sendHikeLetterMail(fillHikeLetter(mapper.convertToEmployeeDTO(employee),hike),employee.getEmail());
+            }catch (Exception e){
+                throw new RuntimeException("Something went wrong");
+            }
+            return mapper.convertToHikeEntityDto(savedHike);
+        }
+        throw new CompanyException(ResCodes.HIKE_APPROVED_ALREADY);
+    }
+    private byte[] fillHikeLetter(EmployeeDTO employee,HikeEntity hike) throws JRException, IOException {
+        JasperReport template1 = JasperCompileManager.compileReport(new ClassPathResource("templates/hikeLetterPages/hike-letter.jrxml").getInputStream());
+        JasperReport template2 = JasperCompileManager.compileReport(new ClassPathResource("templates/hikeLetterPages/hike-letter-page-two.jrxml").getInputStream());
+        System.err.println("compiled ");
+        Map<String, Object> parameters1 = new HashMap<>();
+        parameters1.put("employee", employee);
+        parameters1.put("hikeDetails",mapper.convertToHikeEntityDto(hike));
+        System.out.println(mapper.convertToHikeEntityDto(hike));
+        parameters1.put("hikeAmount",(hike.getNewSalary()-hike.getPrevSalary()));
+
+
+        CtcCalculator calculator=new CtcCalculator();
+        Map<String, Object> parameters2 = new HashMap<>();
+        parameters2.put("employee", employee);
+        parameters2.put("prevSalaryDetails",calculator.compensationDetails(hike.getPrevSalary()));
+        System.out.println(calculator.compensationDetails(hike.getPrevSalary()));
+        parameters2.put("newSalaryDetails",calculator.compensationDetails(hike.getNewSalary()));
+
+        JasperPrint jasperPrint1 = JasperFillManager.fillReport(template1, parameters1, new JREmptyDataSource());
+        JasperPrint jasperPrint2 = JasperFillManager.fillReport(template2, parameters2, new JREmptyDataSource());
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        JRPdfExporter exporter = new JRPdfExporter();
+        List<JasperPrint> jasperPrints = new ArrayList<>();
+        jasperPrints.add(jasperPrint1);
+        jasperPrints.add(jasperPrint2);
+        exporter.setExporterInput(SimpleExporterInput.getInstance(jasperPrints));
+        exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(outputStream));
+        exporter.exportReport();
+
+        return outputStream.toByteArray();
+    }
+    private void sendHikeLetterMail(byte [] pdf,String to) throws MessagingException, IOException {
+        emailSenderService.sendEmailWithAttachment(to,"Salary Hike Updation ","Update",pdf);
+    }
+
+
 
 }

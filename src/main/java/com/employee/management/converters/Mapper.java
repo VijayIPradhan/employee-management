@@ -1,15 +1,9 @@
 package com.employee.management.converters;
 
-import com.employee.management.DTO.CtcData;
-import com.employee.management.DTO.EmployeeDTO;
-import com.employee.management.DTO.OfferLetterDTO;
-import com.employee.management.DTO.PayrollDTO;
+import com.employee.management.DTO.*;
 import com.employee.management.exception.CompanyException;
 import com.employee.management.exception.ResCodes;
-import com.employee.management.models.Employee;
-import com.employee.management.models.OfferLetterEntity;
-import com.employee.management.models.Payroll;
-import com.employee.management.models.Role;
+import com.employee.management.models.*;
 import com.employee.management.util.CtcCalculator;
 import com.employee.management.util.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.stream.Stream;
 
 @Component
 public class Mapper {
@@ -78,19 +73,19 @@ public class Mapper {
             payroll.setPayDate(dateConverter.stringToLocalDateTimeConverter(payrollDTO.getPayDate()));
             payroll.setPayPeriod(payrollDTO.getPayPeriod());
             CtcData ctcData = calculator.compensationDetails(convertStringToDoubleAmount(payrollDTO.getGrossEarnings()));
-            payroll.setBasic((double) Math.round(ctcData.getMonthlyBasic()));
-            payroll.setHouseRentAllowance((double) Math.round(ctcData.getMonthlyHRA()));
-            payroll.setMedicalAllowance((double) Math.round(ctcData.getMonthlyMedAllowance()));
-            payroll.setOtherAllowance((double) Math.round(ctcData.getMonthlyOtherAllowance()));
-            payroll.setGrossEarnings((double) Math.round(ctcData.getMonthlyGrossCtc()));
+            payroll.setBasic((double) Math.round(Float.parseFloat(ctcData.getMonthlyBasic())));
+            payroll.setHouseRentAllowance((double) Math.round(Float.parseFloat(ctcData.getMonthlyHRA())));
+            payroll.setMedicalAllowance((double) Math.round(Float.parseFloat(ctcData.getMonthlyMedAllowance())));
+            payroll.setOtherAllowance((double) Math.round(Float.parseFloat(ctcData.getMonthlyOtherAllowance())));
+            payroll.setGrossEarnings((double) Math.round(Float.parseFloat(ctcData.getMonthlyGrossCtc())));
             payroll.setLeaveDeduction(convertStringToDoubleAmount(payrollDTO.getLeaveDeduction()));
-            payroll.setProfessionalTax((double) Math.round(ctcData.getMonthlyProfessionalTax()));
-            payroll.setProvidentFund((double) Math.round(ctcData.getMonthlyProvidentFund()));
-            payroll.setTotalDeductions((double) Math.round(ctcData.getMonthlyTotalDeduction()) + payroll.getLeaveDeduction());
-            payroll.setTotalNetPayable((double) Math.round(ctcData.getMonthlyNetPayable())- payroll.getLeaveDeduction());
+            payroll.setProfessionalTax((double) Math.round(Float.parseFloat(ctcData.getMonthlyProfessionalTax())));
+            payroll.setProvidentFund((double) Math.round(Float.parseFloat(ctcData.getMonthlyProvidentFund())));
+            payroll.setTotalDeductions((double) Math.round(Float.parseFloat(ctcData.getMonthlyTotalDeduction())) + payroll.getLeaveDeduction());
+            payroll.setTotalNetPayable((double) Math.round(Float.parseFloat(ctcData.getMonthlyNetPayable()))- payroll.getLeaveDeduction());
             payroll.setTotalPaidDays(payrollDTO.getTotalDaysPaid());
             payroll.setTotalLopDays(payrollDTO.getTotalLopDays());
-            payroll.setIncomeTax((double) Math.round(ctcData.getMonthlyIncomeTax()));
+            payroll.setIncomeTax((double) Math.round(Float.parseFloat(ctcData.getMonthlyIncomeTax())));
 
             return payroll;
         }
@@ -145,17 +140,32 @@ public class Mapper {
         offerLetterDTO.setDepartment(entity.getDepartment());
         return offerLetterDTO;
     }
+    public HikeEntityDTO convertToHikeEntityDto(HikeEntity hike){
+        HikeEntityDTO hikeEntityDTO=new HikeEntityDTO();
+        hikeEntityDTO.setId(hike.getId());
+        hikeEntityDTO.setHikePercentage(String.valueOf(hike.getHikePercentage()));
+        hikeEntityDTO.setEffectiveDate(dateConverter.localDateTimeToStringConverter(hike.getEffectiveDate()));
+        hikeEntityDTO.setEmployeeId(hike.getEmployee().getEmployeeID());
+        hikeEntityDTO.setReason(hike.getReason());
+        hikeEntityDTO.setApprovedDate(dateConverter.localDateTimeToStringConverter(hike.getApprovedDate()));
+        hikeEntityDTO.setNewSalary(formatAmountWithCommas(hike.getNewSalary()));
+        hikeEntityDTO.setPrevSalary(formatAmountWithCommas(hike.getPrevSalary()));
+        hikeEntityDTO.setStatus(hike.getStatus());
+        if(hike.getApprovedBy() !=null)
+            hikeEntityDTO.setApprovedBy(hike.getApprovedBy().getEmployeeID());
+        return hikeEntityDTO;
+    }
     private boolean validateEmployeeDto(EmployeeDTO employeeDTO) {
-        return Arrays.asList(employeeDTO.getEmployeeName(), employeeDTO.getDesignation(),
+        return Stream.of(employeeDTO.getEmployeeName(), employeeDTO.getDesignation(),
                         employeeDTO.getLocation(), employeeDTO.getBankName(),
                         employeeDTO.getAccountNo())
-                .stream()
                 .allMatch(field -> field != null && !field.isEmpty());
     }
     public Double convertStringToDoubleAmount(String amount){
         if(amount!=null && amount.contains(","))
             amount=amount.replace(",","");
-       return Double.parseDouble(amount);
+        assert amount != null;
+        return Double.parseDouble(amount);
     }
     public String formatAmountWithCommas(Double amount) {
         if (amount == null) {
@@ -164,8 +174,7 @@ public class Mapper {
         if(amount==0){
             return "0";
         }
-        String format=numberFormat.formatNumber(amount);
-        return format;
+        return numberFormat.formatNumber(amount);
     }
 
 }

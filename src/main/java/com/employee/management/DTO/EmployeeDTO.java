@@ -1,5 +1,6 @@
 package com.employee.management.DTO;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;

@@ -18,4 +18,5 @@ public interface PayrollRepository extends JpaRepository<Payroll,Long> {
            "BETWEEN :fromDate AND DATE_ADD(:fromDate, INTERVAL 5 MONTH)", nativeQuery = true)
    List<Payroll> findByPayPeriodRange(String fromDate);
 
+
 }

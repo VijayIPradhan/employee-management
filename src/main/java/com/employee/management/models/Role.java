@@ -1,6 +1,7 @@
 package com.employee.management.models;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.ArrayList;

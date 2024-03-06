@@ -22,11 +22,11 @@ public class IndianNumberSystem {
         if(split!=null) {
             result.append(".").append(split);
         }
-        result= formatNumber(result);
+        result= formatNumb(result);
         StringBuilder resultW = getStringBuilder(String.valueOf(result));
         return resultW.toString();
     }
-    private StringBuilder formatNumber(StringBuilder result) {
+    private StringBuilder formatNumb(StringBuilder result) {
         String resultStr = result.toString().replaceAll(",", "");
         DecimalFormat df = new DecimalFormat("##0.00");
         String formattedResultStr = df.format(Double.parseDouble(resultStr));
@@ -54,5 +54,4 @@ public class IndianNumberSystem {
         }
         return result;
     }
-
 }

@@ -33,8 +33,7 @@ public class DailyScheduler {
     EmailSenderService emailSenderService;
 
 
-//    @Scheduled(cron = "0 0 0 * * *")
-    @Scheduled(fixedRate = 180000)
+    @Scheduled(cron = "0 0 0 * * *")
     public void hikeTableUpdater(){
         List<Employee> employees=employeeRepository.findByStatusName("active");
         LocalDate today = LocalDate.now();
@@ -44,13 +43,12 @@ public class DailyScheduler {
                     HikeEntity hikeEntity=new HikeEntity();
                     hikeEntity.setEmployee(employee);
                     hikeEntity.setPrevSalary(employee.getGrossSalary());
-                    hikeEntity.setStatus(false);
                     updateHikeDateAndSave(employee);
                     hikeRepository.save(hikeEntity);
                     updateAdminAboutHikeViaMail(hikeEntity,employee);
                 });
     }
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(cron = "0 0 0 * * *")
     public void updateEmployeeGrossSalary(){
         LocalDate localDate = LocalDate.now();
         Date effectiveDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -90,12 +88,10 @@ public class DailyScheduler {
     private void updateAdminAboutHikeViaMail(HikeEntity hike,Employee employee){
         List<Employee> admins=employeeRepository.findAdminEmployees();
         admins.forEach(
-                admin->{
-                    emailSenderService.sendSimpleEmail(admin.getEmail(),
-                            "Employee Eligible For Hike",
-                            bodyForMail(employee,admin)
-                            );
-                }
+                admin-> emailSenderService.sendSimpleEmail(admin.getEmail(),
+                        "Employee Eligible For Hike",
+                        bodyForMail(employee,admin)
+                        )
         );
     }
     private String bodyForMail(Employee employee,Employee admin){

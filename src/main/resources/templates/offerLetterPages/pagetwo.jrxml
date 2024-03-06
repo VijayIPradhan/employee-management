@@ -52,7 +52,7 @@
                 <reportElement x="0" y="0" width="555" height="73" uuid="ab3ca41d-878c-4c57-b3cc-1523af093399"/>
                 <image>
                     <reportElement x="10" y="-7" width="80" height="68" uuid="73cb7ef5-b4b7-4049-8477-ea84c7464eff"/>
-                    <imageExpression><![CDATA["/Users/kasaram/IdeaProjects/employee-management-master/src/main/resources/images/seabed2crest.jpg"]]></imageExpression>
+                    <imageExpression><![CDATA["images/seabed2crest.jpg"]]></imageExpression>
                 </image>
                 <staticText>
                     <reportElement x="110" y="3" width="389" height="42" uuid="68df26ed-181a-4d4a-b3a0-ea6fbeb483b4"/>

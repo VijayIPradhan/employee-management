@@ -5,7 +5,10 @@ import lombok.Data;
 @Data
 public class HikeUpdateRequest {
     private String employeeId;
+    private String approvedDate;
+    private String issuedDate;
     private String percentage;
+    private String newPosition;
     private String reason;
     private String approvedBy;
     private String effectiveDate;

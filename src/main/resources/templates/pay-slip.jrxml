@@ -102,7 +102,7 @@ Bengalulu, Karnataka 560064.]]></text>
             <staticText>
                 <reportElement x="441" y="17" width="114" height="14" forecolor="#918C8C" uuid="9fcc7113-4da2-44ff-8952-7d38be2e0cfb"/>
                 <textElement>
-                    <font size="11" isBold="true"/>
+                    <font  size="11" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Payslip for the Month]]></text>
             </staticText>
@@ -118,8 +118,7 @@ Bengalulu, Karnataka 560064.]]></text>
     <pageHeader>
         <band height="140" splitType="Stretch">
             <staticText>
-                <reportElement x="11" y="14" width="120" height="20" forecolor="#5C5858
-" uuid="68774939-530d-48dd-8be7-504ee3b14b9b"/>
+                <reportElement x="11" y="14" width="120" height="20" forecolor="#5C5858" uuid="68774939-530d-48dd-8be7-504ee3b14b9b"/>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
@@ -162,7 +161,6 @@ Bengalulu, Karnataka 560064.]]></text>
             <textField>
                 <reportElement x="157" y="34" width="100" height="14" uuid="8df94aff-0b3d-495c-90eb-edf078bcaf88"/>
                 <textFieldExpression><![CDATA[$P{employee}.getEmployeeName()]]></textFieldExpression>
-
             </textField>
             <textField>
                 <reportElement x="157" y="55" width="100" height="14" uuid="482cef07-70d9-4019-a2a1-477ccbe6b720"/>
@@ -186,7 +184,7 @@ Bengalulu, Karnataka 560064.]]></text>
                 </graphicElement>
             </line>
             <staticText>
-                <reportElement x="403" y="48" width="100" height="15" forecolor="#2F6144" uuid="655bdc8f-2da4-4392-8116-e0a6b5d31732"/>
+                <reportElement x="404" y="48" width="100" height="15" forecolor="#2F6144" uuid="655bdc8f-2da4-4392-8116-e0a6b5d31732"/>
                 <textElement textAlignment="Left">
                     <font  size="9"/>
                 </textElement>
@@ -218,7 +216,7 @@ Bengalulu, Karnataka 560064.]]></text>
             <staticText>
                 <reportElement x="393" y="22" width="8" height="24" uuid="6b3b683a-06e2-4259-813e-a22fc3b80b6c"/>
                 <textElement>
-                    <font size="18" isBold="true"/>
+                    <font  size="18" isBold="true"/>
                 </textElement>
                 <text><![CDATA[₹]]></text>
             </staticText>
@@ -232,7 +230,7 @@ Bengalulu, Karnataka 560064.]]></text>
         </band>
     </pageHeader>
     <columnHeader>
-        <band height="73" splitType="Stretch">
+        <band height="93" splitType="Stretch">
             <line>
                 <reportElement x="1" y="-2" width="553" height="1" forecolor="#A0AFBA" uuid="ff0ee42b-4922-401e-b0da-922fa92128d8">
                     <property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -286,12 +284,34 @@ Bengalulu, Karnataka 560064.]]></text>
                 <reportElement x="157" y="12" width="100" height="14" uuid="fbb76002-f7f7-4a42-b95b-5568e2ca68eb"/>
                 <textFieldExpression><![CDATA[$P{employee}.getDesignation()]]></textFieldExpression>
             </textField>
+            <staticText>
+                <reportElement x="15" y="62" width="142" height="20" forecolor="#7D7979" uuid="8c5538c9-f0ac-4a89-acfd-bb0d90eaf2e1"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[PF Number                              :]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="157" y="62" width="100" height="14" uuid="022d9624-ecbc-45d1-89a5-af3b2126db8c"/>
+                <textFieldExpression><![CDATA[$P{employee}.getPfNumber()]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="311" y="62" width="110" height="20" forecolor="#7D7979" uuid="42769bb5-6feb-4456-bc54-684755a0988b"/>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[UAN                             :]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="421" y="62" width="100" height="14" uuid="15866f9a-c796-4860-a9ea-fdcc894a22e3"/>
+                <textFieldExpression><![CDATA[$P{employee}.getUanNumber()]]></textFieldExpression>
+            </textField>
         </band>
     </columnHeader>
     <detail>
         <band height="454" splitType="Stretch">
             <frame>
-                <reportElement x="1" y="13" width="552" height="200" uuid="aa063087-adcf-4f92-b423-a9147ef22ed1"/>
+                <reportElement x="1" y="12" width="552" height="200" uuid="aa063087-adcf-4f92-b423-a9147ef22ed1"/>
                 <box>
                     <pen lineWidth="4.0" lineColor="rgba(175, 204, 222, 0.6431373)"/>
                 </box>
@@ -441,39 +461,51 @@ Bengalulu, Karnataka 560064.]]></text>
                     </textElement>
                     <textFieldExpression><![CDATA[$P{payroll}.getBasic()]]></textFieldExpression>
                 </textField>
-
                 <staticText>
-                    <reportElement x="293" y="78" width="150" height="20" forecolor="#524E4E" uuid="2e3430ea-e200-4fb8-86b0-508db20c759e"/>
+                    <reportElement x="293" y="107" width="150" height="20" forecolor="#524E4E" uuid="2e3430ea-e200-4fb8-86b0-508db20c759e"/>
                     <textElement>
                         <font isBold="false"/>
                     </textElement>
                     <text><![CDATA[Professional Tax]]></text>
                 </staticText>
                 <textField>
-                    <reportElement x="476" y="77" width="70" height="20" uuid="a18eaee7-53e8-43f1-b61a-fce99343d010"/>
+                    <reportElement x="476" y="106" width="70" height="20" uuid="a18eaee7-53e8-43f1-b61a-fce99343d010"/>
                     <textElement textAlignment="Right" verticalAlignment="Top">
                         <font isBold="true"/>
                     </textElement>
                     <textFieldExpression><![CDATA[$P{payroll}.getProfessionalTax()]]></textFieldExpression>
                 </textField>
                 <staticText>
-                    <reportElement x="293" y="106" width="150" height="20" forecolor="#524E4E" uuid="ff19a53c-f8c4-46c4-9307-d52c837bb174">
+                    <reportElement x="293" y="135" width="150" height="20" forecolor="#524E4E" uuid="ff19a53c-f8c4-46c4-9307-d52c837bb174">
                         <printWhenExpression><![CDATA[$P{payroll}.getLeaveDeduction() != "0"]]></printWhenExpression>
                     </reportElement>
                     <textElement>
                         <font isBold="false"/>
                     </textElement>
                     <text><![CDATA[Leave Deductions]]></text>
-
                 </staticText>
                 <textField>
-                    <reportElement x="476" y="105" width="70" height="20" uuid="30b0db11-8a37-491e-a9c8-eafe5b39bcd9">
+                    <reportElement x="476" y="134" width="70" height="20" uuid="30b0db11-8a37-491e-a9c8-eafe5b39bcd9">
                         <printWhenExpression><![CDATA[$P{payroll}.getLeaveDeduction() != "0"]]></printWhenExpression>
                     </reportElement>
                     <textElement textAlignment="Right" verticalAlignment="Top">
                         <font isBold="true"/>
                     </textElement>
                     <textFieldExpression><![CDATA[$P{payroll}.getLeaveDeduction()]]></textFieldExpression>
+                </textField>
+                <staticText>
+                    <reportElement x="293" y="78" width="150" height="20" forecolor="#524E4E" uuid="49a2b1ad-294d-42d8-9bba-58d1e3e5e285"/>
+                    <textElement>
+                        <font isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Income Tax]]></text>
+                </staticText>
+                <textField>
+                    <reportElement x="476" y="77" width="70" height="20" uuid="fca49c68-40e6-4524-a341-8be7a2c40693"/>
+                    <textElement textAlignment="Right" verticalAlignment="Top">
+                        <font isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{payroll}.getIncomeTax()]]></textFieldExpression>
                 </textField>
             </frame>
             <rectangle radius="15">
@@ -505,7 +537,7 @@ Bengalulu, Karnataka 560064.]]></text>
             <textField>
                 <reportElement x="457" y="294" width="96" height="24" uuid="8b3c6628-ec76-4d12-b1ab-8fd69115e0f8"/>
                 <textElement textAlignment="Left">
-                    <font size="17" isBold="true"/>
+                    <font  size="17" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{payroll}.getTotalNetPayable()]]></textFieldExpression>
             </textField>

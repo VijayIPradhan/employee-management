@@ -1,9 +1,6 @@
 package com.employee.management.util;
 
 import com.employee.management.DTO.CtcData;
-import com.employee.management.converters.IndianNumberSystem;
-import com.employee.management.converters.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -22,7 +19,7 @@ public class CtcCalculator {
 
 
     public CtcData compensationDetails(Double grossSalary) {
-        Double monthlyGrossSalary = grossSalary / 12;
+        double monthlyGrossSalary = grossSalary / 12;
 
         CtcData data = new CtcData();
         data.setYearlyGrossCtc((formatNumber(grossSalary)));
@@ -30,9 +27,9 @@ public class CtcCalculator {
 
         calculateMonthlyCompensations(data);
 
-        Double monthlyHRA = monthlyGrossSalary * HRA_PERCENTAGE;
-        Double monthlyMedAllowance = monthlyGrossSalary * MED_PERCENTAGE;
-        Double monthlyOtherAllowance = monthlyGrossSalary - (monthlyMedAllowance + BASIC + monthlyHRA);
+        double monthlyHRA = monthlyGrossSalary * HRA_PERCENTAGE;
+        double monthlyMedAllowance = monthlyGrossSalary * MED_PERCENTAGE;
+        double monthlyOtherAllowance = monthlyGrossSalary - (monthlyMedAllowance + BASIC + monthlyHRA);
 
         data.setYearlyBasic((formatNumber(BASIC * 12)));
         data.setMonthlyBasic((formatNumber(BASIC)));
@@ -52,11 +49,11 @@ public class CtcCalculator {
         return data;
     }
     private void calculateMonthlyCompensations(CtcData data) {
-        Double monthlyGrossSalary = Double.valueOf(data.getMonthlyGrossCtc());
+        double monthlyGrossSalary = Double.parseDouble(data.getMonthlyGrossCtc());
         data.setMonthlyBasic(formatNumber(BASIC));
         data.setMonthlyHRA(formatNumber(monthlyGrossSalary * HRA_PERCENTAGE));
 
-        Double monthlyMedAllowance = monthlyGrossSalary * MED_PERCENTAGE;
+        double monthlyMedAllowance = monthlyGrossSalary * MED_PERCENTAGE;
         Double monthlyOtherAllowance = monthlyGrossSalary - (monthlyMedAllowance + BASIC + Double.parseDouble(data.getMonthlyHRA()));
 
         data.setMonthlyMedAllowance(formatNumber(monthlyMedAllowance));
@@ -65,7 +62,7 @@ public class CtcCalculator {
         data.setMonthlyProfessionalTax(formatNumber(PROF_TAX));
         data.setMonthlyLeaveDeduction(formatNumber(LEAVE_DED));
         data.setMonthlyProvidentFund(formatNumber(PF));
-        Double totalDeduction = PROF_TAX + Double.parseDouble(data.getMonthlyIncomeTax()) + PF + LEAVE_DED;
+        double totalDeduction = PROF_TAX + Double.parseDouble(data.getMonthlyIncomeTax()) + PF + LEAVE_DED;
         data.setMonthlyTotalDeduction(formatNumber(totalDeduction));
         data.setMonthlyNetPayable(formatNumber(monthlyGrossSalary - totalDeduction));
     }

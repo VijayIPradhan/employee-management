@@ -2,7 +2,7 @@ package com.employee.management.controller;
 
 import com.employee.management.DTO.*;
 import com.employee.management.converters.AmountToWordsConverter;
-import com.employee.management.converters.PDFGeneratorForPaySlip;
+import com.employee.management.service.PDFService;
 import com.employee.management.service.AdminService;
 import com.employee.management.service.EmployeeService;
 import com.employee.management.service.PayRollService;
@@ -10,8 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-import java.util.Base64;
+
 import java.util.List;
 
 @RestController
@@ -22,14 +23,18 @@ public class AdminController {
     @Autowired
     EmployeeService employeeService;
     @Autowired
-    PDFGeneratorForPaySlip pdfGeneratorForPaySlip;
+    PDFService pdfService;
     @Autowired
     PayRollService payRollService;
+
     @Autowired
     private AmountToWordsConverter amountToWordsConverter;
+
+    private final SseEmitter emitter=new SseEmitter();
+
     @PostMapping("/add")
 //    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<EmployeeDTO> addEmployee(@RequestBody EmployeeDTO employeeDTO){
+    public ResponseEntity<String> addEmployee(@RequestBody EmployeeDTO employeeDTO){
         return new ResponseEntity<>(adminService.addNewEmployee(employeeDTO), HttpStatus.CREATED);
     }
     @GetMapping
@@ -59,28 +64,27 @@ public class AdminController {
         return new ResponseEntity<>(adminService.changeEmployeeStatus(empId,status),HttpStatus.OK);
     }
 
-    @GetMapping("/view")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<String> viewPaySlip(@RequestParam("employeeId") String empId, @RequestParam("payPeriod") String payPeriod) {
-        PaySlip paySlip = payRollService.getPaySlip(empId, payPeriod);
-        String amountInWords = amountToWordsConverter.convertToIndianCurrency(paySlip.getPayrollDTO().getTotalNetPayable());
-        try {
-            byte[] pdfBytes = pdfGeneratorForPaySlip.generatePaySlipPdf(paySlip, amountInWords);
-            String pdfBase64 = Base64.getEncoder().encodeToString(pdfBytes);
-            String pdfUrl = "data:application/pdf;base64," + pdfBase64;
-            return ResponseEntity.ok(pdfUrl);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
+
+    @GetMapping("/get-designation/{id}")
+    public ResponseEntity<String >getEmployeeDesignation(@PathVariable("id")String empId){
+        return new ResponseEntity<>(adminService.fetchEmployeeDesignation(empId),HttpStatus.OK);
+    }
+
+    @GetMapping("/hike-recommendations")
+    public ResponseEntity<List<HikeEntityDTO>>fetchHikeRecommendations(){
+        return new ResponseEntity<>(adminService.hikeRecommendations(),HttpStatus.OK);
     }
     @PostMapping("/add-payroll")
 //    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<PayrollDTO> addNewPayRoll(@RequestBody PayrollDTO payrollDTO) {
-            PayrollDTO payroll = adminService.addPayroll(payrollDTO, payrollDTO.getEmployeeId());
+        PayrollDTO payroll = adminService.addPayroll(payrollDTO, payrollDTO.getEmployeeId());
         System.out.println(payroll);
-            return ResponseEntity.status(HttpStatus.CREATED).body(payroll);
+        return ResponseEntity.status(HttpStatus.CREATED).body(payroll);
 
+    }
+    @PostMapping("/add-new-payroll")
+    public ResponseEntity<PayrollDTO>addNewPayrollWithMinimalData(@RequestBody AddMonthlyPayRollRequest request){
+        return new ResponseEntity<>(adminService.addMonthlyPayRoll(request),HttpStatus.OK);
     }
     @GetMapping("/salary-graph")
     public ResponseEntity<List<AvgSalaryGraphResponse>> fetchSixMonthData(){
@@ -91,8 +95,23 @@ public class AdminController {
         System.out.println(request);
         return new ResponseEntity<>(adminService.updatePfDetails(request),HttpStatus.OK);
     }
-    @PostMapping("/update-hike")
-    public ResponseEntity<HikeEntityDTO>updateHike(@RequestBody HikeUpdateRequest request){
+    @PostMapping("/approve-hike")
+    public ResponseEntity<String>approveHike(@RequestBody HikeUpdateRequest request){
         return new ResponseEntity<>(adminService.updateHikeDetails(request),HttpStatus.OK);
     }
+
+    @PostMapping("/update-hike")
+    public ResponseEntity<HikeEntityDTO>giveHike(@RequestBody HikeUpdateRequest request){
+        return new ResponseEntity<>(adminService.giveHike(request),HttpStatus.OK);
+    }
+    @PostMapping("/preview-hike")
+    public ResponseEntity<byte[]>reviewHike(@RequestBody HikeUpdateRequest request){
+        byte[] pdfBytes = adminService.previewHikeDetails(request);
+        return pdfService.generatePdfPreviewResponse(pdfBytes);
+    }
+    @PostMapping("/edit-hike")
+    public ResponseEntity<HikeEntityDTO>editHike(@RequestBody HikeEntityDTO hikeEntityDTO){
+        return new ResponseEntity<>(adminService.editHikeLetter(hikeEntityDTO),HttpStatus.OK);
+    }
+
 }

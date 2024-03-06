@@ -17,10 +17,10 @@ public class HikeEntity {
     @JoinColumn(name="employee_id", referencedColumnName="EmployeeID")
     private Employee employee;
 
-    @Column(name="prev-salary")
+    @Column(name = "prev-salary")
     private Double prevSalary;
 
-    @Column(name="new-salary")
+    @Column(name = "new-salary")
     private Double newSalary;
 
     @Column(name="hike-percentage")
@@ -28,6 +28,12 @@ public class HikeEntity {
 
     @Column(name="reason")
     private String reason;
+
+    @Column(name="prev-position")
+    private String prevPosition;
+
+    @Column(name = "new-position")
+    private String newPosition;
 
     @OneToOne
     @JoinColumn(name="approved_by", referencedColumnName="EmployeeID")
@@ -37,7 +43,10 @@ public class HikeEntity {
     private Date approvedDate;
 
     @Column(name="status")
-    private Boolean status;
+    private Boolean isApproved;
+
+    @Column(name = "isPromoted")
+    private Boolean isPromoted;
 
     @Column(name="effective_date")
     private Date effectiveDate;

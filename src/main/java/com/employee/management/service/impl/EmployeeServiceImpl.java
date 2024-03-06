@@ -45,21 +45,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     Verification verification;
     @Override
     public EmployeeDTO getEmployee(String id){
-       Employee employee= employeeRepository.findById(id).orElseThrow(()->new CompanyException(ResCodes.EMPLOYEE_NOT_FOUND));
-      return mapper.convertToEmployeeDTO(employee);
+        Employee employee= employeeRepository.findById(id).orElseThrow(()->new CompanyException(ResCodes.EMPLOYEE_NOT_FOUND));
+        return mapper.convertToEmployeeDTO(employee);
     }
-    @Override
-    public boolean verifyUser(Long id, String password) {
-        Employee employee=employeeRepository.findById("")
-                .orElseThrow(()->new CompanyException(ResCodes.EMPLOYEE_NOT_FOUND));
-        if(employee.getPassword().equals(password) && employee.getStatus().getName().equals("active")){
-            return true;
-        }
-        if(employee.getStatus().getName().equals("inactive")){
-            throw new CompanyException(ResCodes.INACTIVE_EMPLOYEE);
-        }
-        return false;
-    }
+
     @Override
     public String changePassword(ChangePasswordRequest request) {
         try {
@@ -95,7 +84,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         otpRepository.save(otpEntity);
         emailSenderService.sendSimpleEmail(employee.getEmail(),"Forget Your Password",
                 "Otp :"+otpEntity.getOtpValue()
-                );
+        );
         return "Success";
     }
 

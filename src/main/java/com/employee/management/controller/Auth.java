@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -32,10 +33,11 @@ public class Auth {
             if (authenticate.isAuthenticated())
                 return jwtService.generateToken(authRequest.getEmpId());
             else throw new CompanyException(ResCodes.INVALID_ID_AND_PASSWORD);
-        }catch (AuthenticationException e){
+        } catch (AuthenticationServiceException e){
             throw new CompanyException(ResCodes.INVALID_ID_AND_PASSWORD);
         }
     }
+
     @PostMapping("/change-password")
     public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequest request){
         return new ResponseEntity<>(employeeService.changePassword(request), HttpStatus.OK);
